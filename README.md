@@ -1,13 +1,13 @@
-<h1 align="center">Gene Target Screener</h1>
+<h1 align="left">Gene Target Screener</h1>
 
-<p align="center">
+<p align="left">
   <img src="https://img.shields.io/badge/status-active-brightgreen" alt="Project Status">
   <img src="https://img.shields.io/badge/version-0.1.0-blue" alt="Version">
   <img src="https://img.shields.io/github/license/ShanJiangEmugen/gene-target-screener" alt="License">
   <img src="https://img.shields.io/github/stars/ShanJiangEmugen/gene-target-screener?style=social" alt="GitHub Stars">
 </p>
 
-<p align="center">
+<p align="left">
   <img src="https://img.shields.io/badge/python-3.8%2B-blue" alt="Python Version">
   <img src="https://img.shields.io/github/last-commit/ShanJiangEmugen/gene-target-screener" alt="Last Commit">
   <img src="https://img.shields.io/github/issues/ShanJiangEmugen/gene-target-screener" alt="Issues">
