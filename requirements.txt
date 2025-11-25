@@ -1,0 +1,4 @@
+biopython>=1.79
+pandas>=1.4
+numpy>=1.22
+
