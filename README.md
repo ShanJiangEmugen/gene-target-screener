@@ -1,20 +1,20 @@
-# U7 Target Screener
+# Gene Target Screener
 
-A small Biopython-based tool for scanning U7 antisense target sequences
-across species or between different transcript regions.
+A simple and flexible tool for scanning, extracting, and aligning subsequences between two nucleotide sequences.      
+It provides a sliding-window–based subsequence generator and a Biopython PairwiseAligner wrapper to evaluate conservation, similarity, and alignment scores across two input sequences.      
 
-This repo contains the code I use in my AAV–U7 splicing correction
-projects to identify conserved, low-repeat subsequences that are
-compatible with U7-snRNA–mediated splice modulation.
+This tool is suitable for general sequence comparison tasks, conserved-region discovery, and lightweight pairwise alignment workflows.      
 
 ## Features
 
-- Sliding-window extraction of candidate subsequences (default 18–35 bp)
-- Filters out CTGCTGCTG-rich regions (optional to extend later)
-- Pairwise alignment using Biopython `PairwiseAligner` with BLASTN matrix
-- Simple conservation and score-based filtering
-- Batch mode: screen many pairwise comparisons from a single CSV file
-- Outputs results as CSV files for downstream cloning/construct design
+- **Sliding-window extraction** of subsequences from any input DNA/RNA sequence    
+- **Automatic filtering** of low-complexity CTG repeat–rich regions    
+- **Pairwise alignment** using Biopython `PairwiseAligner`   
+- **Conservation-based filtering** across any two sequences    
+- **Batch mode** for running multiple sequence comparisons from a CSV file    
+- Outputs structured **CSV reports** for downstream analysis    
+- Works as both a **Python module** and a **CLI tool**
+
 
 ## Installation
 
@@ -22,4 +22,103 @@ compatible with U7-snRNA–mediated splice modulation.
 git clone https://github.com/<your-username>/u7-target-screener.git
 cd u7-target-screener
 pip install -r requirements.txt
+```
+
+## Input Format
+
+The batch runner accepts a CSV file with the following columns:        
+| Column         | Description                                  |
+| -------------- | -------------------------------------------- |
+| `Comparison #` | Each comparison must contain exactly 2 rows. |
+| `Region`       | Name/label for each sequence.                |
+| `Sequence`     | Raw nucleotide sequence (A/C/G/T).           |
+
+
+### Example:
+```csv
+Comparison #,Region,Sequence
+1,SeqA,ACGTACGTACGT...
+1,SeqB,TACGATCGATCG...
+2,Human_exon5,ACTG...
+2,Mouse_exon5,ACTG...
+```
+
+## Usage
+Batch Mode
+
+Run all pairwise comparisons in a CSV:    
+```bash
+python -m gene_target_screener.batch_run \
+    -i examples/screening_example.csv \
+    -o results \
+    -t 0.8
+```
+
+This generates a directory:    
+```
+results/
+└── pair1_SeqA_SeqB/
+    ├── input_SeqA_refseq_SeqB.csv
+    └── input_SeqB_refseq_SeqA.csv
+```
+
+Each output CSV includes:
+- `Position`     
+- `Sequence`    
+- `Length`    
+- `Matched`    
+- `Conservation`    
+- `Score`    
+- `Score Max`    
+- `Score-wise Conservation`    
+
+
+## Python API Example
+```python
+from gene_target_screener.aligner import SubsequenceAligner
+from Bio.Seq import Seq
+
+seq1 = Seq("ACGTACGTACGT...")
+seq2 = Seq("TACGATCGATCG...")
+
+aligner = SubsequenceAligner(seq1, seq2)
+aligner.make_query(seq_low=18, seq_high=36)
+aligner.init_aligner()
+aligner.get_alignment(threshold=0.8)
+
+df = aligner.results
+print(df.head())
+```
+
+## Project Structure
+```
+gene-target-screener/
+├── gene_target_screener/
+│   ├── __init__.py
+│   ├── aligner.py
+│   └── batch_run.py
+├── examples/
+│   ├── screening_example.csv
+│   └── run_example.sh
+├── notebooks/
+│   └── batch_run.ipynb
+├── README.md
+├── requirements.txt
+└── LICENSE
+```
+
+## Requirements
+```
+biopython>=1.79
+pandas>=1.4
+numpy>=1.22
+```
+
+## License 
+MIT      
+
+
+
+
+
 
