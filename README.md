@@ -34,7 +34,7 @@ This tool is suitable for general sequence comparison tasks, conserved-region di
 ## Installation
 
 ```bash
-git clone https://github.com/<your-username>/u7-target-screener.git
+git clone https://github.com/ShanJiangEmugen/u7-target-screener.git
 cd u7-target-screener
 pip install -r requirements.txt
 ```
