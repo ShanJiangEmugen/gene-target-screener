@@ -107,9 +107,8 @@ gene-target-screener/
 │   ├── aligner.py
 │   └── batch_run.py
 ├── examples/
-│   ├── screening_example.csv
-│   └── run_example.sh
-├── notebooks/
+│   └── screening_example.csv
+├── notebook/
 │   └── batch_run.ipynb
 ├── README.md
 ├── requirements.txt
