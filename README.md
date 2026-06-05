@@ -7,12 +7,6 @@
   <img src="https://img.shields.io/github/stars/ShanJiangEmugen/gene-target-screener?style=social" alt="GitHub Stars">
 </p>
 
-<p align="left">
-  <img src="https://img.shields.io/badge/python-3.8%2B-blue" alt="Python Version">
-  <img src="https://img.shields.io/github/last-commit/ShanJiangEmugen/gene-target-screener" alt="Last Commit">
-  <img src="https://img.shields.io/github/issues/ShanJiangEmugen/gene-target-screener" alt="Issues">
-  <img src="https://img.shields.io/badge/code%20style-black-000000" alt="Code Style: black">
-</p>
 
 
 A simple and flexible tool for scanning, extracting, and aligning subsequences between two nucleotide sequences.      
