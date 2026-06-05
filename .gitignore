@@ -9,14 +9,13 @@ venv/
 .env/
 build/
 dist/
-examples/
+
 
 # OS
 .DS_Store
 
 # data
 *.czi
-*.csv
 *.png
 *.tif
 *.jpg
